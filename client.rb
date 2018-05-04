@@ -1,6 +1,8 @@
-# a tiny client for hal to roleplay as npcs with.
+# a tiny client to roleplay as npcs with.
 # expects a .json file with character data called 'characters.json'
 # character data can potentially include tokens and client_ids.
+# also expects a .json file with a channel_id, a token and a client_id.
+
 require 'socket'
 require 'json'
 require 'readline'
