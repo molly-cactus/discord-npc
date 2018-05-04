@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # a tiny client to roleplay as npcs with.
 # expects a .json file with character data called 'characters.json'
 # character data can potentially include tokens and client_ids.
