@@ -65,7 +65,6 @@ loop do
   end
 
   puts "Select NPC by name: "
-  selected = ''
   until characters.keys.include?(selected = read.to_sym)
     puts "Invalid character name. Please try again:"
   end
