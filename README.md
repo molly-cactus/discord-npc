@@ -11,6 +11,6 @@ Characters should also be defined by something actually unique on the server... 
 
 Too much knowledge about the bots has to be transmitted every single time; why can't the server remember their image, their name, etc?
 
-**Step 1:** The server knows what characters exist; the client can use those characters.
+**Step 1:** The server knows what characters exist; the client can use those characters. What about the token, though? It would make sense to leave it with the client as a means of authentication; but this would also require duplication, in the form of two (or more...) character files, one on each end. Maybe this is too much.
 
 **Step 2:** The client can suggest new characters, which the server then remembers.
