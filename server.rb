@@ -6,13 +6,21 @@ require 'json'
 require 'trollop'
 
 options = Trollop::options do
-  opt :port, 'Which port to listen on', type: :int, default: 45790
+  opt :port,  'Which port to listen on', type: :int,  default: 45790
+  opt :quiet, 'No output about bots',    type: :bool, default: false
 end
 
 server = TCPServer.open(options[:port])
-puts "\nServer started, listening on port #{options[:port]}..."
+puts "\n🍳 Server started, listening on port #{options[:port]}..."
+puts
 
 bots = {}
+at_exit do
+  puts
+  puts "\n💤 bye-bye!"
+  puts
+end
+trap('SIGINT') { exit }
 
 # wait for client to connect
 while client = server.accept
@@ -31,8 +39,11 @@ while client = server.accept
       token = data[:token]
       id = data[:client_id]
 
-      bots[character] = Discordrb::Bot.new(token: token, client_id: id)
-      puts "bot '#{character}' created"
+      bots[character] = Discordrb::Bot.new(token: token,
+                                           client_id: id,
+                                           log_mode: :quiet)
+
+      puts "🤖 created '#{character}'" unless options[:quiet]
 
       # start specified bot
       bots[character].run :async
@@ -45,6 +56,7 @@ while client = server.accept
       end
     end
     bots[character].send_message(channel_id, "**#{character}:** #{message}")
+    puts "💬 #{character}: #{message}" unless options[:quiet]
   end
 end
 
