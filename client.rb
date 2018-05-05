@@ -16,9 +16,6 @@ options = Trollop::options do
   opt :curt, "Don't display bios.", type: :bool, default: false
 end
 
-HOST = options[:address]
-PORT = options[:port]
-SHOW_CHARACTER_BIOS = !options[:curt]
 
 def read_json(file)
   File.open(file, 'r') { |f| JSON.parse(f.read, symbolize_names: true) }
@@ -27,9 +24,9 @@ end
 secrets    = read_json('secrets.json')
 characters = read_json('characters.json')
 AUTOCOMPLETION_LIST = characters.keys.sort
-
-server = TCPSocket.open(HOST, PORT)
-at_exit { puts 'bye-bye!'; server.close }
+HOST = options[:address]
+PORT = options[:port]
+SHOW_CHARACTER_BIOS = !options[:curt]
 
 # don't append a character after autocompletion
 Readline.completion_append_character = nil
@@ -42,13 +39,22 @@ end
 
 # convenience method for using readline with history
 # also allows safe exiting out of program at any input
-def read(sym: '> ')
-  input = Readline.readline(sym, true)
+def read(prompt: '> ')
+  input = Readline.readline(prompt, true)
   exit if input == '/exit' || input == ':q'
   input
 end
 
+server = TCPSocket.open(HOST, PORT)
+at_exit { puts 'bye-bye!'; server.close }
+
+puts "Connected to server at #{HOST} on port #{PORT}."
+puts
+
 loop do
+  puts '=' * 80
+  puts
+
   # write npc selection menu with bios
   if SHOW_CHARACTER_BIOS
     characters.keys.each do |name|
@@ -81,6 +87,4 @@ loop do
   }.to_json
 
   server.puts(data)
-  puts '=' * 80
-  puts
 end
