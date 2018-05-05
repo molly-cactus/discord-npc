@@ -8,10 +8,17 @@
 require 'socket'
 require 'json'
 require 'readline'
+require 'trollop'
 
-HOST = 'localhost'
-PORT = 45790
-SHOW_CHARACTER_BIOS = true
+options = Trollop::options do
+  opt :address, "The server's URL.", type: :string, default: 'localhost'
+  opt :port, "The server's listening port.", type: :int, default: 45790
+  opt :curt, "Don't display bios.", type: :bool, default: false
+end
+
+HOST = options[:address]
+PORT = options[:port]
+SHOW_CHARACTER_BIOS = !options[:curt]
 
 def read_json(file)
   File.open(file, 'r') { |f| JSON.parse(f.read, symbolize_names: true) }
