@@ -3,8 +3,14 @@
 require 'discordrb'
 require 'socket'
 require 'json'
+require 'trollop'
 
-server = TCPServer.open(45790)
+options = Trollop::options do
+  opt :port, 'Which port to listen on.', type: :int, default: 45790
+end
+
+server = TCPServer.open(options[:port])
+puts "Server started, listening on port #{options[:port]}..."
 
 bots = {}
 
