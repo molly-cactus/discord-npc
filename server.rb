@@ -10,7 +10,7 @@ options = Trollop::options do
 end
 
 server = TCPServer.open(options[:port])
-puts "Server started, listening on port #{options[:port]}..."
+puts "\nServer started, listening on port #{options[:port]}..."
 
 bots = {}
 

@@ -76,7 +76,7 @@ loop do
   puts
 
   # build json to send to server
-  # use character-specific token and client_id, if supplied.
+  # use character-specific token, client_id, and channel_id if supplied.
   data = {
     name:       selected,
     token:      characters[selected][:token]      || secrets[:token],
