@@ -11,9 +11,9 @@ require 'readline'
 require 'trollop'
 
 options = Trollop::options do
-  opt :address, "The server's URL.", type: :string, default: 'localhost'
-  opt :port, "The server's listening port.", type: :int, default: 45790
-  opt :curt, "Don't display bios.", type: :bool, default: false
+  opt :address, "The server's URL", type: :string, default: 'localhost'
+  opt :port, "The server's listening port", type: :int, default: 45790
+  opt :curt, "Don't display bios", type: :bool, default: false
 end
 
 

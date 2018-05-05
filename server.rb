@@ -6,7 +6,7 @@ require 'json'
 require 'trollop'
 
 options = Trollop::options do
-  opt :port, 'Which port to listen on.', type: :int, default: 45790
+  opt :port, 'Which port to listen on', type: :int, default: 45790
 end
 
 server = TCPServer.open(options[:port])
