@@ -34,7 +34,7 @@ Readline.completion_append_character = nil
 Readline.completer_word_break_characters = ''
 # enable autocompletion of character names
 Readline.completion_proc = proc do |s|
-  AUTOCOMPLETION_LIST.grep(/#{Regexp.escape(s)}/)
+  AUTOCOMPLETION_LIST.grep(/#{Regexp.escape(s)}/i)
 end
 
 # convenience method for using readline with history
