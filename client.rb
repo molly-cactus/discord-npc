@@ -78,12 +78,12 @@ loop do
   # build json to send to server
   # use character-specific token and client_id, if supplied.
   data = {
-    name: selected,
-    token: characters[selected][:token] || secrets[:token],
-    client_id: characters[selected][:client_id] || secrets[:client_id],
-    channel_id: secrets[:channel_id],
-    image: characters[selected][:portrait],
-    message: message
+    name:       selected,
+    token:      characters[selected][:token]      || secrets[:token],
+    client_id:  characters[selected][:client_id]  || secrets[:client_id],
+    channel_id: characters[selected][:channel_id] || secrets[:channel_id],
+    image:      characters[selected][:portrait],
+    message:    message
   }.to_json
 
   server.puts(data)
