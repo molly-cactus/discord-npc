@@ -16,8 +16,9 @@ puts
 
 bots = {}
 at_exit do
+  server.close
   puts
-  puts "\n💤 bye-bye!"
+  puts "\n💤 server closed. bye-bye!"
   puts
 end
 trap('SIGINT') { exit }
