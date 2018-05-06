@@ -18,7 +18,7 @@ end
 
 
 def read_json(file)
-  File.open(file, 'r') { |f| JSON.parse(f.read, symbolize_names: true) }
+  JSON.parse(File.read(file), symbolize_names: true)
 end
 
 secrets    = read_json('secrets.json')
