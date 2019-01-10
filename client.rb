@@ -8,9 +8,9 @@
 require 'socket'
 require 'json'
 require 'readline'
-require 'trollop'
+require 'optimist'
 
-options = Trollop::options do
+options = Optimist::options do
   opt :address, "The server's URL", type: :string, default: 'localhost'
   opt :port, "The server's listening port", type: :int, default: 45790
   opt :curt, "Don't display bios", type: :bool, default: false

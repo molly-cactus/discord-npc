@@ -3,9 +3,9 @@
 require 'discordrb'
 require 'socket'
 require 'json'
-require 'trollop'
+require 'optimist'
 
-options = Trollop::options do
+options = Optimist::options do
   opt :port,  'Which port to listen on', type: :int,  default: 45790
   opt :quiet, 'No output about bots',    type: :bool, default: false
 end
